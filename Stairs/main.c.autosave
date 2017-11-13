@@ -1,0 +1,61 @@
+#include <stdio.h>
+
+int main(void)
+
+{
+    int kilk;
+    scanf("%d",&kilk);
+    int i=0;
+
+    while(i<=kilk)
+    {
+     int a=0;
+     while(a<i)
+     {
+      printf("*");
+      a++;
+     }
+     printf("\n");
+     i++;
+     }
+ printf("\n");
+ i=0;
+    while(i<=kilk)
+    {
+     int a=kilk;
+     while(a>i)
+    {
+     printf("*");
+     a--;
+     }
+     printf("\n");
+     i++;
+    }
+i=1;
+    while(i<=kilk)
+     {
+     int q=1;
+     while(q<=kilk-i)
+     {
+     printf(" ");
+     q++;
+     }
+     int j=1;
+     while(j<=i+(i-1))
+     {
+     printf("*");
+     j++;
+     }
+     printf("\n");
+     i++;
+     }
+     i =1;
+     while(i<=kilk){
+         if(i!=kilk){printf(" ");}
+                     else{printf("*");}
+         i++;
+     }
+printf("\n");
+return (0);
+}
+
