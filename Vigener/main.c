@@ -81,7 +81,7 @@ void userChoice(int selector, unsigned char* stringArray, char* keyword,char* ab
 }
 
 int main() {
-    unsigned char* stringArray = getInputString(10000000);
+    char* stringArray = getInputString(10000000);
     int selector;
     char keyword[26];
     char alphabet[27] = {0,'a','b','c','d','e','f','g','h','i','j','k','l', 'm','n','o','p','q','r','s','t','u','v','w','x','y','z'};
