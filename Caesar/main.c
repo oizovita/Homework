@@ -65,7 +65,6 @@ void userChoice(int selector, unsigned char* stringArray, int key){
 
 int main(int argc, char** argv) {
 
-
     if (!strcmp(argv[1],"help") && argc == 2){
             printf("Name program [string] [key] [enencrypt-1 or decrypt-2]");
             return 1;
