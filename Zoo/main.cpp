@@ -155,7 +155,7 @@ void operationWithTheZoo(){
 int main (){
 
     Administration manager ;
-    manager.control();
+    manager.operationWithTheZoo();
     return 0;
 }
 
