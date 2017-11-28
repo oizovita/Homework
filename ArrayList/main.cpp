@@ -1,109 +1,103 @@
-#include "stdio.h"
-#include "iostream"
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
 #define FIXED_SIZE 5
 using namespace std;
 
 class ArrayList {
 private:
-    int count = 0;
-    int *array;
-
+    int* array;
+    int count;
+    int allocSize;
 public:
     ArrayList(){
         array = new int[FIXED_SIZE];
+        count = 0;
+        allocSize = FIXED_SIZE;
     }
 
-    int get(int index) {
-        if (index < count) {
-            return array[index];
-        }
-    }
+    void add(int number) {
+        if(count < allocSize) {
+            array[count] = number;
+            count++;
+        } else {
+            int* newArray = new int[allocSize * 2];
+            allocSize = allocSize * 2;
 
-    void add(int obj) {
-        if (sizeof(array) - count <= sizeof(array) / 2) {
-            reSizeArray(obj);
-        }
-
-        array[count++] = obj;
-    }
-
-    void set(int element, int index){
-        array[index]=element;
-    }
-
-    int remove(int index) {
-        if (index < count) {
-            int obj = array[index];
-            int temp = index;
-            array[index] = NULL;
-
-            while (temp < count) {
-                array[temp] = array[temp + 1];
-                array[temp + 1] =NULL;
-                temp++;
+            for(int i = 0; i < count; i++) {
+                newArray[i] = array[i];
             }
 
+            delete array;
+            array = newArray;
+            array[count] = number;
+            count++;
+        }
+    }
+
+    void set(int index, int number) {
+        if(count < allocSize) {
+            count++;
+            for(int i = count - 1; i != index - 1; i--) {
+                array[i] = array[i - 1];
+            }
+            array[index] = number;
+        }
+    }
+
+    void remove(int index) {
+        if (index < count) {
+            while (index < count) {
+                array[index] = array[index + 1];
+                index++;
+            }
             count--;
-            return obj;
         }
     }
 
-    int trimToSize(int index) {
-        int *newArray= new int[index];
-        for(int i=0; i<index; i++){
-            newArray[i]= array[i];
+    void trimToSize() {
+        int* newArray = new int[count];
+
+        for(int i = 0; i < count; i++) {
+            newArray[i] = array[i];
         }
 
+        delete array;
         array = newArray;
-        return index;
-    }
 
-    void reSizeArray(int obj) {
-        int *newArray= new int[count*2];
-        for(int i=0; i<count; i++){
-            newArray[i]= array[i];
+        for(int i = 0; i < count; i++) {
+            cout << newArray[i]<<endl;
+
         }
-
-        newArray[count]= obj;
-        array=newArray;
+        cout << endl;
     }
 
-    int size() {
-        return count;
+    void show() {
+        for(int i = 0; i < allocSize; i++) {
+            cout << array[i]<<endl;
+
+        }
+        cout << endl;
     }
 };
+
 int main() {
-    ArrayList *dynamicalArray = new ArrayList();
+    ArrayList* dynamicalArray = new ArrayList();
 
-    dynamicalArray->add(2);
     dynamicalArray->add(4);
+    dynamicalArray->add(5);
     dynamicalArray->add(7);
-    dynamicalArray->add(9);
-    dynamicalArray->add(7);
-    dynamicalArray->add(8);
+    dynamicalArray->add(12);
     dynamicalArray->add(3);
-    dynamicalArray->add(6);
-
-    for (int i = 0; i < dynamicalArray->size(); i++) {
-        cout<< dynamicalArray->get(i)<<endl;
-    }
-    cout<<"-----------------------------------------------------"<<endl;
-    dynamicalArray->set(45,4);
-    dynamicalArray->remove(3);
-
-    for (int i = 0; i < dynamicalArray->size(); i++) {
-        cout<<dynamicalArray->get(i)<<endl;
-    }
-    cout<<"-----------------------------------------------------"<<endl;
-    dynamicalArray->trimToSize(3);
-    for (int i = 0; i < dynamicalArray->trimToSize(3); i++) {
-        cout<<dynamicalArray->get(i)<<endl;
-    }
+    dynamicalArray->add(9);
+    dynamicalArray->add(78);
+    dynamicalArray->add(10);
+    dynamicalArray->add(15);
+    dynamicalArray->show();
+    dynamicalArray->set(2,6);
+    dynamicalArray->show();
+    dynamicalArray->remove(6);
+    dynamicalArray->show();
+    dynamicalArray->trimToSize();
     delete dynamicalArray;
 }
-
-
-
-
-
-
