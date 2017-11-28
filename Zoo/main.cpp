@@ -11,7 +11,7 @@ private:
     string kind;
     string location;
     bool isShow;
-
+    int count;
 public:
     Zoo (){
 
@@ -22,6 +22,7 @@ public:
         numberOfPaws = 0;
         health = 0;
         isShow = false;
+
     }
     void set (){
 
@@ -81,27 +82,31 @@ public:
         return name;
     }
 
-    void remove(){
 
-        name = "";
-        kind = "";
-        location = "";
-        age = 0;
-        numberOfPaws = 0;
-        health = 0;
-    }
 
 };
 class Administration{
    private:
     int select ;
-    int i = -1;
+    int i = 0;
     int j;
     Zoo animal [20];
 
 public:
 
-void control(){
+    void remove(int index){
+
+        if (index <= i) {
+            while (index < i) {
+                animal[index] = animal[index + 1];
+                index++;
+            }
+            i--;
+        }
+
+    }
+
+void operationWithTheZoo(){
 
     do
 {
@@ -120,13 +125,13 @@ void control(){
         animal[i].set() ;
         break;
     case 2:
-        for (int j = 0; j <= i; j++ ){
+        for (int j = 1; j <= i; j++ ){
             animal[j].getName() ;
         }
         break;
 
     case 3:
-        for (int j = 0; j <= i; j++ ){
+        for (int j = 1; j <= i; j++ ){
             animal[j].get(j) ;
         }
         break;
@@ -140,7 +145,7 @@ void control(){
     case 5:
         cout<<"Which animal do you want to remove?"<<endl;
         cin >> j;
-        animal[j].remove();
+        remove(j);
         break;
     }
 }while (select != 6 );
