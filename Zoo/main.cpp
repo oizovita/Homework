@@ -111,18 +111,16 @@ public:
 
 void operationWithTheZoo(){
 
-    do
-{
+    do{
     cout <<"1:Add animal"<<endl<<"2:View all animal"<<endl<<"3:See all information about animals"<<endl<<"4:Edit information"<<endl<<"5:Delete animal"<<endl<<"6:Exit"<<endl ;
-    do
-    {
+
+    do{
         cout << "Your choose:   " ;
         cin >> select ;
         if (select < 1 || select > 6)
             cout << "Wrong choose...Try again \n" << endl ;
     }   while (select < 1 || select > 6 );
-    switch (select)
-    {
+    switch (select){
     case 1:
         i++ ;
         animal[i].set() ;
