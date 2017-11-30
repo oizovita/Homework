@@ -17,7 +17,7 @@ public:
     }
 
     void add(int number) {
-        if(count < allocSize) {
+        if(count <= allocSize) {
             array[count] = number;
             count++;
         } else {
@@ -36,7 +36,7 @@ public:
     }
 
     void set(int index, int number) {
-        if(count < allocSize) {
+        if(count <= allocSize) {
             count++;
             for(int i = count - 1; i != index - 1; i--) {
                 array[i] = array[i - 1];
@@ -46,7 +46,7 @@ public:
     }
 
     void remove(int index) {
-        if (index < count) {
+        if (index <= count) {
             while (index < count) {
                 array[index] = array[index + 1];
                 index++;
@@ -92,7 +92,6 @@ int main() {
     dynamicalArray->add(9);
     dynamicalArray->add(78);
     dynamicalArray->add(10);
-    dynamicalArray->add(15);
     dynamicalArray->show();
     dynamicalArray->set(2,6);
     dynamicalArray->show();
