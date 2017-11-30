@@ -1,5 +1,6 @@
 #include <iostream>
-
+#define NUMBER_OF_ANIMALS 20
+#define SIZE_OF_DATA 20
 using namespace std ;
 
 class Zoo{
@@ -7,17 +8,18 @@ private:
     int age;
     int health;
     int numberOfPaws;
-    string name;
-    string kind;
-    string location;
+    char* name;
+    char* kind;
+    char* location;
     bool isShow;
-    int count;
+
+
 public:
     Zoo (){
 
-        name = "";
-        kind = "" ;
-        location = "";
+        name = new char[SIZE_OF_DATA];
+        kind = new char[SIZE_OF_DATA] ;
+        location = new char[SIZE_OF_DATA];
         age = 0;
         numberOfPaws = 0;
         health = 0;
@@ -90,7 +92,8 @@ class Administration{
     int select ;
     int i = 0;
     int j;
-    Zoo animal [20];
+
+    Zoo animal [NUMBER_OF_ANIMALS];
 
 public:
 
