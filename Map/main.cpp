@@ -2,13 +2,18 @@
 #include<string.h>
 
 using namespace std;
-const int SIZE_OF_ARRAY = 20;
+
 const int SIZE = 501;
+const int SIZE_ARRAY =100000000;
 
 class Map{
 public:
+    int *array;
 
-    int array[SIZE_OF_ARRAY];
+    Map(){
+        array = new int[SIZE_ARRAY];
+    }
+
 
     int hash (char* str){
         int seed = 131;
@@ -27,11 +32,16 @@ public:
     int get(char* str){
         return array[hash(str)];
     }
+
+    ~Map(){
+        delete []array;
+    }
 };
 
 int main()
 {
     Map map;
+
     map.add("I", 27);
     map.add("am", 9);
     map.add("Batman", 1939);
